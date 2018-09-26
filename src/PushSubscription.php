@@ -38,4 +38,5 @@ class PushSubscription extends Model
     {
         return static::where('endpoint', $endpoint)->first();
     }
+
 }
