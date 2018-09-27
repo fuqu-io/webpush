@@ -42,12 +42,13 @@ class WebPushChannel{
 				$sub->endpoint,
 				$payload,
 				$sub->public_key,
-				$sub->auth_token
+				$sub->auth_token,
+				true //a
 			);
 		});
-		$response = $this->webPush->flush();
-
-		$this->deleteInvalidSubscriptions($response, $subscriptions);
+//		$response = $this->webPush->flush();
+//
+//		$this->deleteInvalidSubscriptions($response, $subscriptions);
 
 		$safari_subscriptions->each(function ($subscription) use ($notifiable, $notification){
 			AbstractSafariChannel::send($notifiable, $notification, $subscription);
