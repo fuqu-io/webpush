@@ -67,6 +67,7 @@ class WebPushChannel{
 
 		foreach($response as $index => $value){
 			if(!$value['success'] && isset($subscriptions[$index])){
+				\FuquIo\LaravelCore\Debug::log(json_encode($value));
 				$subscriptions[$index]->delete();
 			}
 		}
