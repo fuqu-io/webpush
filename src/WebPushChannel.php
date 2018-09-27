@@ -43,7 +43,7 @@ class WebPushChannel{
 				$payload,
 				$sub->public_key,
 				$sub->auth_token,
-				true //a
+				true //
 			);
 		});
 //		$response = $this->webPush->flush();
