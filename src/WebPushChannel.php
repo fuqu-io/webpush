@@ -34,25 +34,27 @@ class WebPushChannel{
 		}
 
 		$safari_subscriptions = $subscriptions->where('public_key', 'safari');
-		$subscriptions        = $subscriptions->where('public_key', '!=', 'safari');
-
-		$payload = json_encode($notification->toWebPush($notifiable, $notification)->toArray());
-		$subscriptions->each(function ($sub) use ($payload){
-			$this->webPush->sendNotification(
-				$sub->endpoint,
-				$payload,
-				$sub->public_key,
-				$sub->auth_token,
-				true //
-			);
-		});
-//		$response = $this->webPush->flush();
-//
-//		$this->deleteInvalidSubscriptions($response, $subscriptions);
-
 		$safari_subscriptions->each(function ($subscription) use ($notifiable, $notification){
 			AbstractSafariChannel::send($notifiable, $notification, $subscription);
 		});
+
+		$subscriptions = $subscriptions->where('public_key', '!=', 'safari');
+
+		if($subscriptions->count()){
+			$payload = json_encode($notification->toWebPush($notifiable, $notification)->toArray());
+			$subscriptions->each(function ($sub) use ($payload){
+				$this->webPush->sendNotification(
+					$sub->endpoint,
+					$payload,
+					$sub->public_key,
+					$sub->auth_token,
+					false //
+				);
+			});
+			$response = $this->webPush->flush();
+
+			$this->deleteInvalidSubscriptions($response, $subscriptions);
+		}
 	}
 
 	/**
