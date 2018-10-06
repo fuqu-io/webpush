@@ -18,14 +18,8 @@ class PushSubscription extends Model
         'auth_token',
     ];
 
-    /**
-     * Get the user that owns the subscription.
-     *
-     * @return \Illuminate\Contracts\Auth\Authenticatable
-     */
-    public function user()
-    {
-        return $this->belongsTo(Config::get('auth.providers.users.model'));
+    public function Pushable(){
+    	return $this->morphTo();
     }
 
     /**

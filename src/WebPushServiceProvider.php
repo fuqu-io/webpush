@@ -80,12 +80,6 @@ class WebPushServiceProvider extends ServiceProvider{
 			                 __DIR__ . '/../config/webpush.php' => config_path('webpush.php'),
 		                 ], 'config');
 
-		if(!class_exists('CreatePushSubscriptionsTable')){
-			$timestamp = date('Y_m_d_His', time());
-
-			$this->publishes([
-				                 __DIR__ . '/../migrations/create_push_subscriptions_table.php.stub' => $this->app->databasePath() . '/migrations/' . $timestamp . '_create_push_subscriptions_table.php',
-			                 ], 'migrations');
-		}
+		$this->loadMigrationsFrom(__DIR__ . '/../migrations');
 	}
 }
