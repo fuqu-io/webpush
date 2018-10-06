@@ -4,9 +4,11 @@ namespace NotificationChannels\WebPush;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PushSubscription extends Model
 {
+	use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
