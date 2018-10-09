@@ -12,6 +12,7 @@ class AbstractSafariChannel{
 	 * @return void
 	 */
 	public static function send($notifiable, $notification, $subscription){
+		\Log::debug('to safari');
 		$deviceToken = $subscription->safari_device_token;
 
 		// @todo tarek: fix this fucking garbage code
