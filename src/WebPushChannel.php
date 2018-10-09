@@ -70,8 +70,8 @@ class WebPushChannel{
 
 		foreach($response as $index => $value){
 			if(!$value['success'] && isset($subscriptions[$index])){
-				Log::debug($value);
-				Log::debug($subscriptions);
+				\Log::debug($value);
+				\Log::debug($subscriptions);
 				//$subscriptions[$index]->delete();
 			}
 		}
