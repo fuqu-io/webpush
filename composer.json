@@ -12,9 +12,6 @@
         }
     ],
     "require": {
-        "php": "^7.0",
-        "illuminate/notifications": "^5.3",
-        "illuminate/support": "^5.1",
         "minishlink/web-push": "^2.0"
     },
     "require-dev": {
