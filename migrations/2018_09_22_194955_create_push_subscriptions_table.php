@@ -19,7 +19,7 @@ class CreatePushSubscriptionsTable extends Migration
 	        $table->char('pushable_id');
 	        $table->char('pushable_type');
 
-            $table->string('endpoint', 500)->unique();
+            $table->string('endpoint', 500);
             $table->string('public_key')->nullable();
             $table->string('auth_token')->nullable();
 
